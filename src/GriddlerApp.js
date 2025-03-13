@@ -373,6 +373,9 @@ const GriddlerApp = () => {
 
   // Render the puzzle grid using CSS Grid for layout
   const renderGrid = (grid, isSolveMode = true) => {
+    if (isSolveMode && (!selectedPuzzle || !selectedPuzzle.rows || selectedPuzzle.rows.length !== grid.length)) {
+      return <div>Loading puzzle...</div>;
+    }
     const size = grid.length;
     const { rows, cols } = isSolveMode
       ? { rows: selectedPuzzle.rows, cols: selectedPuzzle.cols }
@@ -453,7 +456,7 @@ const GriddlerApp = () => {
     <div className={`panel ${getThemeClass('panelBg')}`}>
       <h1 className="text-2xl font-bold mb-4">Solve: {selectedPuzzle?.name}</h1>
       <div className="mb-6">
-        {selectedPuzzle && renderGrid(gridState, true)}
+        {selectedPuzzle && gridState.length > 0 && renderGrid(gridState, true)}
       </div>
       <button className={`btn text-white ${getThemeClass('primary')}`} onClick={handleSubmit}>
         Check Solution
