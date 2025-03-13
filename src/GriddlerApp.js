@@ -136,9 +136,13 @@ const GriddlerApp = () => {
   useEffect(() => {
     if (puzzles.length && !selectedPuzzle) {
       setSelectedPuzzle(puzzles[0]);
-      setGridState(JSON.parse(JSON.stringify(puzzles[0].grid)));
+      if (activeTab === 'solve') {
+        setGridState(createEmptyGrid(puzzles[0].grid.length));
+      } else {
+        setGridState(JSON.parse(JSON.stringify(puzzles[0].grid)));
+      }
     }
-  }, [puzzles, selectedPuzzle]);
+  }, [puzzles, selectedPuzzle, activeTab]);
 
   // Persist puzzles in localStorage
   useEffect(() => {
