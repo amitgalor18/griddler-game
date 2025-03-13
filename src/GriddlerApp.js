@@ -123,7 +123,7 @@ const GriddlerApp = () => {
       setPuzzles(JSON.parse(saved));
     } else {
       // Ensure that griddler-puzzles4.json is placed in your public folder so it can be fetched.
-      fetch('/griddler-puzzles4.json')
+      fetch('${process.env.PUBLIC_URL}/griddler-puzzles4.json')
         .then((res) => res.json())
         .then((data) => {
           setPuzzles(data);
