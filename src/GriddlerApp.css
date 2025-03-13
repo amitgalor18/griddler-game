@@ -1,0 +1,306 @@
+/* Main layout styles */
+body {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Grid styles */
+.grid-container {
+  margin: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+/* Update sidebar style for a modern look */
+.sidebar {
+  width: 250px;
+  background-color: #1f2937;
+  color: #f3f4f6;
+  padding: 16px;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+
+.grid-cell {
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.grid-cell:hover {
+  filter: brightness(90%);
+}
+
+/* Missing Tailwind background color classes for grid cells */
+.bg-black {
+  background-color: black;
+}
+
+.bg-red-200 {
+  background-color: #fecaca;  /* light red */
+}
+
+.bg-white {
+  background-color: white;
+}
+
+/* Clue labels */
+.clue-label {
+  font-weight: 600;
+  text-align: center;
+}
+
+.row-clue {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+
+.col-clue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Button styles */
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-success {
+  background-color: #059669;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #047857;
+}
+
+/* Message styles */
+.message-success {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+.message-error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+
+
+.puzzle-item {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.puzzle-item:hover {
+  background-color: #374151;
+}
+
+.puzzle-item.active {
+  background-color: #3b82f6;
+}
+
+.puzzle-item-name {
+  font-weight: 500;
+}
+
+.puzzle-item-size {
+  font-size: 0.875rem;
+  color: #d1d5db;
+}
+
+/* Tabbed navigation */
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center tabs */
+  background: linear-gradient(90deg, #4f46e5, #3b82f6); /* blue gradient */
+  padding: 12px 16px;
+  border-bottom: 2px solid #1e40af;
+  width: 100%;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure the main section fills the remaining vertical space */
+.flex-1 {
+  flex: 1;
+}
+
+.tab {
+  flex: 0 0 auto;
+  margin: 0 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.tab:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+.tab.active {
+  background-color: #fff;
+  color: #1e40af;
+  font-weight: 600;
+  border-bottom: 2px solid #1e40af;
+}
+
+.tab:not(.active) {
+  background-color: #d1d5db;
+}
+
+.tab:not(.active):hover {
+  background-color: #e5e7eb;
+}
+
+/* Content panels */
+.panel {
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+}
+
+/* Form elements */
+input, select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+input:focus, select:focus {
+  outline: 2px solid #3b82f6;
+  border-color: #3b82f6;
+}
+
+/* Instructions panel */
+.instructions {
+  background-color: #f3f4f6;
+  padding: 16px;
+  border-radius: 4px;
+  margin-top: 24px;
+}
+
+.instructions h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.instructions ul {
+  margin-top: 0;
+  padding-left: 20px;
+}
+
+.instructions li {
+  margin-bottom: 4px;
+}
+
+/* Utility classes (Tailwind replacements) */
+.flex {
+  display: flex;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+/* Missing flex-1 definition */
+.flex-1 {
+  flex: 1;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* The top tab bar spans the full width */
+/* .top-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #e5e7eb;
+  padding: 8px 16px;
+  border-bottom: 1px solid #ccc;
+} */
+
+/* Tab buttons don’t stretch */
+/* .tab-button {
+  margin-right: 8px;
+  padding: 4px 12px;
+  background-color: #d1d5db;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+} */
+
+/* The row below the tabs: sidebar on the left, main content on the right */
+.main-row {
+  display: flex;
+  flex: 1; /* fill remaining vertical space */
+  background-color: #f3f4f6;
+}
+
+
+/* Main content fills the rest of the row */
+.main-content {
+  flex: 1;
+  padding: 16px;
+  overflow: auto;
+  background-color: white;
+}
