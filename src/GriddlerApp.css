@@ -304,3 +304,29 @@ input:focus, select:focus {
   overflow: auto;
   background-color: white;
 }
+
+@media (max-width: 768px) {
+  /* Change horizontal layout (sidebar + main content) to vertical */
+  .flex.flex-1.bg-gray-100 {
+    flex-direction: column;
+  }
+  
+  /* Make the sidebar take full width and appear on top */
+  .sidebar {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure the main content fills the width and is positioned below */
+  .main-content {
+    width: 100%;
+    padding: 16px;
+  }
+  
+  /* Adjust the top tabs so they wrap nicely and span the full width */
+  .tabs {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 8px;
+  }
+}
