@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/griddler-game/static/css/main.a5af8381.css",
-    "main.js": "/griddler-game/static/js/main.51ef159e.js",
+    "main.js": "/griddler-game/static/js/main.9a1b1244.js",
     "static/js/453.00012d04.chunk.js": "/griddler-game/static/js/453.00012d04.chunk.js",
     "index.html": "/griddler-game/index.html",
     "main.a5af8381.css.map": "/griddler-game/static/css/main.a5af8381.css.map",
-    "main.51ef159e.js.map": "/griddler-game/static/js/main.51ef159e.js.map",
+    "main.9a1b1244.js.map": "/griddler-game/static/js/main.9a1b1244.js.map",
     "453.00012d04.chunk.js.map": "/griddler-game/static/js/453.00012d04.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a5af8381.css",
-    "static/js/main.51ef159e.js"
+    "static/js/main.9a1b1244.js"
   ]
 }
