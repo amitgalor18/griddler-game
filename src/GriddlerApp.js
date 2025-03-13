@@ -58,64 +58,6 @@ const PuzzleFileStorage = {
   }
 };
 
-// Sample puzzle data
-const initialPuzzles = [
-  {
-    id: 1,
-    name: "Heart",
-    size: "10x10",
-    grid: [
-      [0,0,1,1,1,1,1,1,0,0],
-      [0,1,1,0,0,0,0,1,1,0],
-      [1,1,0,0,0,0,0,0,1,1],
-      [1,0,0,0,0,0,0,0,0,1],
-      [1,0,0,0,0,0,0,0,0,1],
-      [1,0,0,0,0,0,0,0,0,1],
-      [0,1,0,0,0,0,0,0,1,0],
-      [0,0,1,0,0,0,0,1,0,0],
-      [0,0,0,1,0,0,1,0,0,0],
-      [0,0,0,0,1,1,0,0,0,0]
-    ],
-    rows: [[6], [2,2], [2,2], [1,1], [1,1], [1,1], [1,1], [1,1], [1,1], [2]],
-    cols: [[3], [3], [2,1], [1,1,1], [1,1], [1,1], [1,1,1], [2,1], [3], [3]]
-  },
-  {
-    id: 2,
-    name: "Duck",
-    size: "10x10",
-    grid: [
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,1,1,1,1,0,0],
-      [0,0,0,1,1,1,1,1,1,0],
-      [0,0,1,1,0,0,1,1,0,0],
-      [0,0,1,1,0,0,1,1,1,0],
-      [0,1,1,1,1,1,1,1,1,1],
-      [0,1,1,1,0,0,0,1,1,1],
-      [0,1,1,1,0,0,0,1,1,1],
-      [0,1,1,1,0,0,0,1,1,1],
-      [0,0,1,1,0,0,0,0,1,1]
-    ],
-    rows: [[0], [4], [6], [2,2], [2,3], [9], [3,3], [3,3], [3,3], [2,2]],
-    cols: [[0], [3], [8], [8], [2], [2], [3], [8], [8], [3]]
-  },
-  {
-    id: 3,
-    name: "Flower",
-    size: "8x8",
-    grid: [
-      [0,0,1,1,1,1,0,0],
-      [0,1,1,1,1,1,1,0],
-      [1,1,1,1,1,1,1,1],
-      [1,1,1,1,1,1,1,1],
-      [1,1,1,1,1,1,1,1],
-      [1,1,1,1,1,1,1,1],
-      [0,1,1,1,1,1,1,0],
-      [0,0,1,1,1,1,0,0]
-    ],
-    rows: [[4], [6], [8], [8], [8], [8], [6], [4]],
-    cols: [[4], [6], [8], [8], [8], [8], [6], [4]]
-  }
-];
 
 // Utility functions
 const computeClues = (grid) => {
@@ -159,10 +101,7 @@ const createEmptyGrid = (size) =>
 
 const GriddlerApp = () => {
   // State setup
-  const [puzzles, setPuzzles] = useState(() => {
-    const saved = localStorage.getItem('griddlerPuzzles');
-    return saved ? JSON.parse(saved) : initialPuzzles;
-  });
+  const [puzzles, setPuzzles] = useState([]);
   const [selectedPuzzle, setSelectedPuzzle] = useState(null);
   const [gridState, setGridState] = useState([]);
   const [message, setMessage] = useState('');
@@ -177,7 +116,23 @@ const GriddlerApp = () => {
   const [theme, setTheme] = useState('blue');
   const gridRef = useRef(null);
 
-  // On first load, select the first puzzle
+  // On first load, load puzzles from localStorage if they exist; otherwise, fetch from the JSON file
+  useEffect(() => {
+    const saved = localStorage.getItem('griddlerPuzzles');
+    if (saved) {
+      setPuzzles(JSON.parse(saved));
+    } else {
+      // Ensure that griddler-puzzles4.json is placed in your public folder so it can be fetched.
+      fetch('/griddler-puzzles4.json')
+        .then((res) => res.json())
+        .then((data) => {
+          setPuzzles(data);
+          localStorage.setItem('griddlerPuzzles', JSON.stringify(data));
+        })
+        .catch((err) => console.error('Error loading puzzles:', err));
+    }
+  }, []);
+  // When a puzzle is selected for the first time, initialize grid state accordingly
   useEffect(() => {
     if (puzzles.length && !selectedPuzzle) {
       setSelectedPuzzle(puzzles[0]);
