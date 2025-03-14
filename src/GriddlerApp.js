@@ -228,7 +228,9 @@ const GriddlerApp = () => {
   };
 
   const handleSubmit = () => {
-    const isCorrect = JSON.stringify(gridState) === JSON.stringify(selectedPuzzle.grid);
+    // Create a version of gridState where any non-black cell is treated as white (0)
+    const transformedGrid = gridState.map(row => row.map(cell => cell === 1 ? 1 : 0));
+    const isCorrect = JSON.stringify(transformedGrid) === JSON.stringify(selectedPuzzle.grid);
     setMessage(isCorrect ? 'Congratulations! You solved the puzzle correctly!' : 'Sorry, that solution is not correct. Please try again.');
   };
 
